@@ -1,14 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>FriendFinder!</title>
-  <script src="./data/friends.js"></script>
+  <!-- <script src="./data/friends.js"></script>
   <script src="./routing/apiRoutes.js"></script>
-  <script src="./routing/htmlRoutes.js"></script>
-
+  <script src="./routing/htmlRoutes.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
 </head>
+
 <body>
-    
+  <div class="container">
+    <!-- Content here -->
+    <form>
+      <!-- q1 -->
+      <div class="form-group">
+        <label for="exampleInputEmail1">Do you like going out or staying in?</label>
+        <br>
+        <div id="q1" class="btn-group" role="group" aria-label="First group">
+          <button type="button" index="0" class="btn btn-secondary">1</button>
+          <button type="button" index="0" class="btn btn-secondary">2</button>
+          <button type="button" index="0" class="btn btn-secondary">3</button>
+          <button type="button" index="0" class="btn btn-secondary">4</button>
+          <button type="button" index="0" class="btn btn-secondary">5</button>
+        </div>
+        <small class="form-text text-muted">5 being you like to go out, 1 being you like to stay in.</small>
+      </div>
+
+      <!-- q2 -->
+      <div class="form-group">
+        <label for="exampleInputEmail1">Are you outgoing or soft spoken??</label>
+        <br>
+        <div id="q1" class="btn-group" role="group" aria-label="First group">
+          <button type="button" index="0" class="btn btn-secondary">1</button>
+          <button type="button" index="0" class="btn btn-secondary">2</button>
+          <button type="button" index="0" class="btn btn-secondary">3</button>
+          <button type="button" index="0" class="btn btn-secondary">4</button>
+          <button type="button" index="0" class="btn btn-secondary">5</button>
+        </div>
+        <small class="form-text text-muted">5 being you like to go out, 1 being you like to stay in.</small>
+      </div>
+
+      <button id="surveySubmit" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 </body>
+
+<script>
+  let scores = [];
+  let picture;
+
+
+  $(".btn").on("click", function (event) {
+    event.preventDefault();
+    let index = this.getAttribute("index");
+    parseInt(index);
+    scores.splice(index, 1, this.innerHTML);
+    console.log("scores array: " + scores);
+  });
+
+
+</script>
+
 </html>
