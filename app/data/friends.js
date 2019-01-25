@@ -7,7 +7,7 @@
 
 let profiles = [{
     "name": "grant",
-    "photo": "",
+    "photo": "https://southernstardolphincruise.com/wp-content/uploads/2018/04/mainart3.jpg",
     "scores": [
         1,
         2,
@@ -24,7 +24,7 @@ let profiles = [{
 },
 {
     "name": "gibs",
-    "photo": "",
+    "photo": "https://www.catster.com/wp-content/uploads/2017/08/A-fluffy-cat-looking-funny-surprised-or-concerned.jpg",
     "scores": [
         1,
         2,

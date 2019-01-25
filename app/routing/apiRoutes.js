@@ -21,6 +21,7 @@ module.exports = function (app) {
     // This route will also be used to handle the compatibility logic.
     app.post("/api/friends", function (req, res) {
 
+        console.log(req.body);
         //array to hold all profiles in the array (minus the one being compared)
         //to parse through for the best match
         let results = [];
@@ -42,7 +43,7 @@ module.exports = function (app) {
 
             let newScoresArray = req.body.scores;
             let oldScoresArray = friends[i].scores;
-            let difference;
+            let difference = 0;
 
             for(let j = 0; j<oldScoresArray.length; j++){
                 let dif = Math.abs(oldScoresArray[j]) - newScoresArray[j];
@@ -65,20 +66,8 @@ module.exports = function (app) {
         let match = results.reduce(function(previous, current){
             return previous.scoreDifference < current.scoreDifference ? previous : current;
         });
-
-        res.json(match);
-
         
-        // console.log(req.body);
-        // console.log(req.body);
-        // friends.push(req.body);
-
-        // console.log(parseInt(req.body.scores))
-        // console.log(req.body.scores);
-        // let comparee = req.body;
-
-
-        // return res.json(req.body);
+        res.json(match);
     });
 };
 
