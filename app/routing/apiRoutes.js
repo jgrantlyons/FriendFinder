@@ -21,34 +21,42 @@ module.exports = function (app) {
     // This route will also be used to handle the compatibility logic.
     app.post("/api/friends", function (req, res) {
 
+        //array to hold all profiles in the array (minus the one being compared)
+        //to parse through for the best match
         let results = [];
         
-        let oldFriendScores = req.body.scores;
-        // console.log("string array", oldFriendScores);
-        let friendScores = oldFriendScores.map(function (arrayElement){
+        //turn scores array of comparee into numbers from strings
+        let stringScores = req.body.scores;
+        let newScores = stringScores.map(function (arrayElement){
             return parseInt(arrayElement);
         });
-        req.body.scores = friendScores;
-        friends.push(req.body);
+        req.body.scores = newScores;
 
-        // console.log("int array: ", friendScores);
-        // // return newFriendScores;
+        // new profile for comparee added to the friends array
+        friends.push(req.body);
         
-        let allProfiles = friends.profiles;
-        for(let i = 0; i>allProfiles.length - 1; i++){
-            let friendArr = allProfiles[i].scores;
+        
+        // fill results array with profiles + compatability scores
+        console.log(friends);
+        for(let i = 0; i<friends.length - 1; i++){
+
+            let newScoresArray = req.body.scores;
+            let oldScoresArray = friends[i].scores;
             let difference;
-            for(let j = 0; j<friendArr.length; j++){
-                let dif = Math.abs(friendArr[j]) - friendScores[j];
-                difference = dif; 
+
+            for(let j = 0; j<oldScoresArray.length; j++){
+                let dif = Math.abs(oldScoresArray[j]) - newScoresArray[j];
+                difference = difference + dif; 
+                console.log("difference: ", difference);
             };
 
             let result = {
-                name: allProfiles[i].name,
-                photo: allProfiles[i].pictureLink,
+                name: friends[i].name,
+                photo: friends[i].pictureLink,
                 scoreDifference: difference
             };
 
+            console.log("results: ", results);
             results.push(result);
             // for(let j = 0; j>allProfiles)
 
@@ -56,7 +64,6 @@ module.exports = function (app) {
 
         let match = results.reduce(function(previous, current){
             return previous.scoreDifference < current.scoreDifference ? previous : current;
-
         });
 
         res.json(match);
